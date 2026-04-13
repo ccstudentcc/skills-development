@@ -1,0 +1,4 @@
+interface:
+  display_name: "Science Research Writing"
+  short_description: "Write and revise research prose clearly"
+  default_prompt: "Use $science-research-writing to revise this manuscript section for clearer scientific argumentation and journal-style English."
