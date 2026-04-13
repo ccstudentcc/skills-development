@@ -15,14 +15,9 @@ This repository is a small workspace for building and validating reusable Codex 
 
 ## Validation
 
-Use the validator shipped with the system `skill-creator` skill:
+If your Codex installation includes the system `skill-creator` skill, run its `quick_validate.py` validator against each skill folder with your local Python setup. This repository does not vendor the validator, so the exact command depends on your own environment.
 
 ```powershell
-& 'C:\Users\chenpeng\miniconda3\python.exe' `
-  'C:\Users\chenpeng\.codex\skills\.system\skill-creator\scripts\quick_validate.py' `
-  'skills\science-research-writing'
-
-& 'C:\Users\chenpeng\miniconda3\python.exe' `
-  'C:\Users\chenpeng\.codex\skills\.system\skill-creator\scripts\quick_validate.py' `
-  'skills\science-research-writing-zh'
+python path\to\quick_validate.py skills\science-research-writing
+python path\to\quick_validate.py skills\science-research-writing-zh
 ```
