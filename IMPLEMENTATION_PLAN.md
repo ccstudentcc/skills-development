@@ -16,11 +16,14 @@
 - Replace scaffold content with a concise workflow-oriented `SKILL.md`.
 - Add only the reference files that the skill actually needs.
 - Add `agents/openai.yaml` metadata.
+- Create `skills/science-research-writing-zh/` with matching structure.
+- Package the Chinese scientific writing guidance into Chinese-facing skill content and references.
 
 ## Stage 4: Review and Tighten
 
 - Run the available validator against the skill folder.
-- Review the generated skill against the four reviewer dimensions.
+- Run the available validator against both skill folders.
+- Review both skills against the four reviewer dimensions.
 - Fix any critical or major issues, then re-check.
 
 ## Stage 5: Publish
@@ -31,6 +34,6 @@
 
 ## Verification
 
-- File inspection for English-only source and skill contents.
-- Validator output from `quick_validate.py`.
+- File inspection for the English source notes and both skill folders.
+- Validator output from `quick_validate.py` for both skills.
 - Git evidence for repository initialization, commit, remote, and push.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Science Research Writing ZH"
+  short_description: "用于中文科技论文结构设计、段落改写、图表引导与论证校准"
+  default_prompt: "使用 $science-research-writing-zh 改写这段中文科技论文文字，使其结构、主语归属与确定性表达更清晰。"

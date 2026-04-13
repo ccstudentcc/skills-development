@@ -18,14 +18,17 @@ Stage 5: Publish
 - Ran the skill validator successfully.
 - Performed a reviewer-style read-through for design, content, usability, and obvious security issues.
 - Initialized git locally and created the public GitHub repository.
+- Re-checked repository state after the interrupted turn and identified the new Chinese source material at `references/Science Research Writing-zh.md`.
+- Created `skills/science-research-writing-zh/` and packaged the Chinese writing guidance into skill-local references.
+- Ran the validator successfully for `skills/science-research-writing-zh/`.
 
 ## In Progress
 
-- Staging, committing, and pushing the repository to the new remote.
+- Reviewing the final repository diff, then committing and pushing both skills to the remote repository.
 
 ## Pending
 
-- Push the first commit to the public remote repository.
+- Commit and push the expanded repository state.
 
 ## Notes
 
