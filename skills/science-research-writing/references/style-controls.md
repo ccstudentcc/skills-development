@@ -2,6 +2,13 @@
 
 Use this file when the structure is already known and the real problem is sentence-level control, paragraph logic, certainty, or reader guidance.
 
+## Quick Navigation
+
+- Start with `Symptom Router` when the prose feels wrong but the exact defect is still unclear.
+- Jump to `Clutter Cutting`, `Verb Energy`, or `Paragraph Logic` for baseline clarity repairs.
+- Jump to `Tense and Time`, `Voice and Ownership`, `Hedging and Modality`, or `Causality` for claim calibration.
+- Jump to `Terminology Discipline`, `Risky Constructions`, or `Micro-Rewrite Workflow` for final tightening.
+
 ## Symptom Router
 
 | If the draft feels | Read first | Then check |

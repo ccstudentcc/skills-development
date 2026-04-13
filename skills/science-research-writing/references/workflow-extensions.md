@@ -2,6 +2,13 @@
 
 Use this file when the task is not only about one paragraph or one section, but about how to assemble, revise, package, or adapt a research writing deliverable.
 
+## Quick Navigation
+
+- Start with `Routing Guide` when the deliverable type is still unclear.
+- Jump to `Manuscript Assembly Order` or `Drafting Workflow` for whole-paper build sequencing.
+- Jump to `Tables, Figures, and Storytelling` for display-driven writing.
+- Jump to `Response to Reviewers`, `Review Article Extension`, or `Lay Summary Extension` for adjacent scholarly formats.
+
 ## Routing Guide
 
 | If the user asks for | Start here |
@@ -11,6 +18,25 @@ Use this file when the task is not only about one paragraph or one section, but 
 | Revise after peer review or draft a response letter | `Response to Reviewers` |
 | Draft a review article rather than an original manuscript | `Review Article Extension` |
 | Convert technical content into a lay summary | `Lay Summary Extension` |
+
+## Related Skill Routing
+
+When the task crosses from prose repair into a neighboring workflow, route intentionally instead of stretching this skill too far.
+
+- Use `doc-coauthoring` from the `anthropics/skills` repository when the user needs a full staged collaboration loop for a long document or multi-section paper.
+- Use `canvas-design` from the `anthropics/skills` repository when the deliverable is a concept figure, framework diagram, graphical summary, or other polished static visual.
+- Use `citation-management` from the `K-Dense-AI/claude-scientific-writer` repository when references must be found, verified, normalized, or exported in BibTeX or another structured format.
+- Use `humanizer` from the `blader/humanizer` repository when the argument and structure are already stable and the remaining job is a final naturalness pass.
+- Do not add absolute paths here: if these routed skills are installed, the model can discover them by skill name; if one is unavailable, tell the user plainly and continue with the closest in-skill fallback.
+
+## Missing-Skill Fallback Map
+
+Use these fallbacks only when the routed skill is unavailable in the current environment.
+
+- `doc-coauthoring` unavailable: keep the work inside this skill, but explicitly split the job into clarify, section-plan, draft, and revision passes instead of pretending a staged collaboration skill is active.
+- `canvas-design` unavailable: do not promise a finished graphic artifact. Produce a figure brief with panel intent, visual hierarchy, caption draft, and layout notes that another visual workflow can execute later.
+- `citation-management` unavailable: only reorganize, normalize, or sanity-check citation information already supplied by the user. Do not invent metadata, DOIs, BibTeX fields, or missing references.
+- `humanizer` unavailable: run an internal final pass using `style-controls.md` plus `revision-checklist.md`, focusing on rhythm, repetition, over-regular phrasing, and sentence variety.
 
 ## Manuscript Assembly Order
 

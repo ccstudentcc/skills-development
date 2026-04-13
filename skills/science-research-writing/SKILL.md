@@ -24,6 +24,14 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 - Domain-specific scientific judgments that require missing background knowledge or new evidence.
 - Pure journalism or marketing copy that is no longer anchored to the source science.
 
+## Related Skills
+
+- When the task expands into staged document collaboration across outlining, section-by-section ideation, drafting, refinement, and reader checks, use `doc-coauthoring` from the `anthropics/skills` repository.
+- When the user needs a concept figure, framework diagram, schematic, or other polished single-page visual artifact, use `canvas-design` from the `anthropics/skills` repository.
+- When the task requires citation lookup, metadata verification, DOI-to-BibTeX conversion, or bibliography cleanup, use `citation-management` from the `K-Dense-AI/claude-scientific-writer` repository.
+- When the scientific structure is already sound but the prose still feels synthetic or machine-regular, use `humanizer` from the `blader/humanizer` repository for the final tone pass.
+- Do not add absolute paths here: if these skills are installed, the model can discover them by skill name; if one is unavailable, say that explicitly to the user and continue with the best in-skill fallback.
+
 ## Workflow
 
 1. Identify the job: draft, revise, or diagnose.
@@ -41,6 +49,13 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 - Use [references/style-controls.md](references/style-controls.md) for sentence-level control over clarity, ownership, certainty, causality, and rewrite tactics.
 - Use [references/workflow-extensions.md](references/workflow-extensions.md) for manuscript assembly order, table/figure storytelling, review articles, lay summaries, and response-to-reviewers discipline.
 - Use [references/revision-checklist.md](references/revision-checklist.md) for final review across structure, sentence logic, evidence discipline, and delivery readiness.
+
+## Maintenance Notes
+
+- Keep this entrypoint concise. Put new tactical depth in `references/` unless the routing itself has changed.
+- Before adding a new adjacent task here, decide whether it should be routed to another installed skill instead of expanding this one.
+- When updating related-skill names or fallback behavior, keep the names aligned with the actual installed skills in the current environment.
+- For future maintenance and skill-improvement work only, reviewer-oriented checks may reference `Skill Reviewer` from the `openclaw/skills` repository, and iterative fix loops may reference `Skill Improver` from the `sickn33/antigravity-awesome-skills` repository. Do not add absolute paths here: if those skills are installed, the model can discover them by name; if they are unavailable, say that explicitly to the user. Do not route normal research-writing tasks to these maintenance-only helpers.
 
 ## Output Requirements
 

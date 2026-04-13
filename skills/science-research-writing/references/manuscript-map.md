@@ -2,6 +2,12 @@
 
 Use this file when the task is mainly about section structure, paragraph moves, or deciding what belongs in a given part of a manuscript.
 
+## Quick Navigation
+
+- Start with `Routing Guide` when the user has not named the section yet.
+- Jump to `Introduction`, `Methods`, `Results`, or `Discussion` for core IMRAD drafting and diagnosis.
+- Jump to `Conclusion`, `Abstract`, or `Title` for compression-heavy polishing work.
+
 ## Routing Guide
 
 Choose the section playbook that matches the user's real job:

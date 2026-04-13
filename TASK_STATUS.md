@@ -24,17 +24,28 @@ Stage 4: Review and Tighten
 - Localized the new Chinese guidance to Chinese academic and public-facing writing conventions instead of mirroring English wording.
 - Added `.gitignore` coverage for `references/Writing-in-the-Sciences/` so the vendored upstream repository stays local-only.
 - Added `references/Writing-in-the-Sciences-reference.md` to record the upstream repository URL and the exact `README.md` files used as source material.
+- Added related-skill routing to both skill entrypoints so adjacent tasks now route to `doc-coauthoring`, `canvas-design`, `citation-management`, and the appropriate humanizer skill.
+- Added matching related-skill routing to both workflow-extension references, including an explicit instruction to tell the user when a routed skill is unavailable in the current environment.
+- Added quick-navigation sections to the large routed reference files so long reference material is faster to traverse during execution.
+- Clarified graceful degradation: when a related skill is unavailable, the model should tell the user and continue with the closest in-skill fallback.
+- Added explicit per-skill fallback maps for missing related skills so degraded execution stays bounded and does not overclaim unavailable capabilities.
+- Added lightweight maintenance rules in both entrypoints to preserve progressive disclosure and keep related-skill names aligned with the real environment.
+- Added maintenance-only related-skill guidance for future skill improvement, citing repository sources instead of absolute paths and stating that missing skills must be disclosed explicitly to the user.
+- Updated the four main related-skill routes to cite repository sources instead of plain names alone, while keeping discovery by skill name and explicit missing-skill disclosure rules.
 - Verified that `git diff --check` is clean after the edits.
 - Verified that all relative markdown links under both skill folders resolve successfully.
 
 ## In Progress
 
-- Preparing the final summary for the imported-reference refinement.
+- Verifying the new related-skill routing pass and preparing the next commit.
 
 ## Pending
 
-- No further content changes are pending in the current turn.
-- No commit requested in the current turn.
+- Re-run markdown and diff checks after the latest related-skill edits.
+- Re-run markdown and diff checks after the quick-navigation and fallback wording pass.
+- Re-run markdown and diff checks after the explicit fallback-map and maintenance-rule pass.
+- Re-run markdown and diff checks after the maintenance-only reviewer/improver note.
+- Wait for a commit request before staging or committing.
 
 ## Notes
 
