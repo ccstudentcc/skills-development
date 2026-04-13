@@ -7,6 +7,7 @@ Use this file when the structure is already known and the real problem is senten
 | If the draft feels | Read first | Then check |
 | --- | --- | --- |
 | Flat or hard to follow | `Reader Guidance`, `Paragraph Logic`, `Sentence Connections` | `Risky Constructions` |
+| Wordy, heavy, or lifeless | `Clutter Cutting`, `Verb Energy` | `Risky Constructions` |
 | Too strong or overclaimed | `Hedging and Modality`, `Causality` | `revision-checklist.md` |
 | Ambiguous about who did what | `Voice and Ownership` | `Tense and Time` |
 | Grammatically acceptable but still vague | `Reader Guidance`, `Terminology Discipline` | `Articles and Shared Knowledge` |
@@ -29,6 +30,48 @@ Tell the reader what the sentence is doing, not only what information it contain
 - Add a short orienting clause before the detail.
 - Add commentary around data so the relevance is explicit.
 - Replace author-memory ordering with reader-need ordering.
+
+## Clutter Cutting
+
+### Core Rule
+
+Cut words that do not change meaning, logic, or evidentiary force.
+
+### Common Clutter Types
+
+- dead openings such as `it should be noted that`,
+- empty intensifiers such as `very`, `really`, or `quite`,
+- weak noun-heavy phrases such as `provides an analysis of`,
+- unnecessary jargon or acronyms,
+- duplicated meaning such as `successful solution` or `basic fundamentals`,
+- negative constructions that can be made direct and positive.
+
+### Preferred Repairs
+
+- replace `there is/there are` openings with a concrete subject and verb,
+- turn negative phrasing into a direct positive construction when meaning stays intact,
+- remove filler words before shortening technical content,
+- shorten long phrases before reaching for new vocabulary.
+
+## Verb Energy
+
+### Core Rule
+
+Let verbs carry action and meaning instead of hiding the sentence inside nouns or weak `to be` structures.
+
+### Use This Check
+
+- Is the main verb easy to find?
+- Is a weak verb paired with a noun that could become the real verb?
+- Is the subject too far from the main verb?
+- Is an adverb compensating for a weak verb that should be replaced?
+
+### Preferred Repairs
+
+- convert nominalized constructions into verbs,
+- replace weak `to be` phrasing when a stronger action verb exists,
+- move the subject and main verb closer together,
+- choose the specific verb instead of pairing a generic verb with an abstract noun.
 
 ## Paragraph Logic
 
@@ -64,6 +107,26 @@ The gap between adjacent sentences should rarely be left implicit.
 - If the second sentence begins with `This`, can the referent be named more precisely?
 - If the transition word is removed, does the logic remain visible?
 - If the relation is contrast, cause, addition, or qualification, is that relation explicit enough?
+
+## Punctuation and Emphasis
+
+### Core Rule
+
+Use punctuation to clarify structure or emphasis, not to decorate the prose.
+
+### Reliable Uses
+
+- use a colon when the second clause explains, amplifies, or lists what the first clause sets up,
+- use parentheses for genuinely skippable side information,
+- use semicolons only between tightly linked independent clauses or complex list items,
+- use dashes sparingly for interruption or emphasis.
+
+### Warnings
+
+- do not rely on punctuation to rescue weak logic,
+- do not overuse dashes until every sentence sounds equally dramatic,
+- do not hide the main point inside parentheses,
+- do not use semicolons when a period would communicate more cleanly.
 
 ## Tense and Time
 

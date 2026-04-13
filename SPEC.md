@@ -11,6 +11,7 @@ Create two reusable writing skills based on the source material in `references/`
 
 - Rewrite `references/Science Research Writing.md` into clear, fully English reference material.
 - Preserve the user-added Chinese reference material at `references/Science Research Writing-zh.md`.
+- Vendor the requested upstream reference repository under `references/Writing-in-the-Sciences/` and use only its unit `README.md` files as new source material.
 - Create portable skill folders under `skills/science-research-writing/` and `skills/science-research-writing-zh/`.
 - Keep the English skill fully in English.
 - Keep the Chinese skill aligned with Chinese scientific writing conventions and Chinese user phrasing.
@@ -22,6 +23,9 @@ Create two reusable writing skills based on the source material in `references/`
 - Prefer progressive disclosure: keep `SKILL.md` concise and move detailed guidance into `references/`.
 - Skill-local routed references must retain practical depth from the source notes rather than collapsing into short summaries.
 - Routed reference files should help an LLM act: include task triage, section-specific playbooks, rewrite tactics, and final quality gates where relevant.
+- Ignore PDFs and other binary course assets as writing sources unless the user later asks for them explicitly.
+- When importing ideas from the new course notes, adapt them into repository-owned guidance instead of mirroring the source phrasing or structure.
+- The Chinese skill must localize the advice to Chinese academic conventions rather than translating English-style advice literally.
 - Avoid scripts or assets unless they add clear value.
 - Do not include secrets, credentials, or environment-specific assumptions.
 
@@ -32,6 +36,7 @@ Create two reusable writing skills based on the source material in `references/`
 - `skills/science-research-writing-zh/SKILL.md` has valid frontmatter with only `name` and `description`.
 - The skill folder includes any referenced files and no orphaned resources.
 - The routed reference files for both skills are materially more specific than the entrypoint and provide actionable drafting or revision guidance.
+- The enriched routed guidance reflects useful ideas from the `Writing-in-the-Sciences` unit notes without depending on those notes at runtime.
 - `agents/openai.yaml` exists and matches the skill.
 - Validation passes for both skills with the available skill validator.
 - A self-review based on the named reviewer methodology finds no unresolved critical or major issues.

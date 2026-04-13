@@ -9,6 +9,7 @@
 
 - Rewrite `references/Science Research Writing.md` into English.
 - Preserve the original structure where it still helps downstream skill design.
+- Import `references/Writing-in-the-Sciences/` and review only the unit `README.md` files for reusable writing guidance.
 
 ## Stage 3: Initialize and Author the Skill
 
@@ -25,6 +26,7 @@
 - Run the available validator against both skill folders.
 - Review both skills against the four reviewer dimensions.
 - Enrich routed `references/` files when reviewer-style read-through shows that section playbooks or control rules are too shallow to guide the model well.
+- Add new routed guidance files when the imported course notes expose adjacent but still-practical subflows, such as manuscript assembly order, table/figure storytelling, review articles, lay summaries, or response-to-reviewers discipline.
 - Fix any critical or major issues, then re-check.
 
 ## Stage 5: Publish
@@ -36,6 +38,7 @@
 ## Verification
 
 - File inspection for the English source notes and both skill folders.
+- File inspection for `references/Writing-in-the-Sciences/` with explicit use of unit `README.md` only.
 - Validator output from `quick_validate.py` for both skills.
 - Reviewer-style read-through of the routed reference files to confirm they remain concise at the entrypoint and concrete in `references/`.
 - Git evidence for repository initialization, commit, remote, and push.

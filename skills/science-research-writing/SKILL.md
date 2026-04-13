@@ -1,6 +1,6 @@
 ---
 name: science-research-writing
-description: Draft, revise, and diagnose English scientific manuscript prose for abstracts, introductions, methods, results, discussions, conclusions, titles, and paragraph-level rewrites. Use when Codex needs to turn notes or rough text into journal-style research writing, align a section with its expected rhetorical moves, or improve sentence-level choices such as tense, voice, hedging, cohesion, causality, and terminology consistency.
+description: Draft, revise, and diagnose English scientific writing for manuscript sections, review-style synthesis, lay summaries, and reviewer-facing revisions. Use when Codex needs to turn notes or rough text into journal-style research prose, align a section with its expected rhetorical moves, improve sentence-level choices such as tense, voice, hedging, cohesion, causality, and terminology consistency, or package research writing for adjacent scholarly formats.
 ---
 
 # Science Research Writing
@@ -15,27 +15,31 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 - Revise rough scientific prose into clearer journal-style English.
 - Diagnose why a paragraph feels weak, confusing, overclaimed, or structurally mismatched.
 - Tighten an abstract, title, or conclusion so the contribution is easier to understand.
+- Organize a review article, point-by-point response, or lay summary that stays close to the underlying science.
 
 ## Do Not Use This Skill For
 
 - Citation lookup, BibTeX repair, or literature search.
 - Journal template formatting, reference-style conversion, or submission portal tasks.
 - Domain-specific scientific judgments that require missing background knowledge or new evidence.
+- Pure journalism or marketing copy that is no longer anchored to the source science.
 
 ## Workflow
 
 1. Identify the job: draft, revise, or diagnose.
 2. Identify the target section and read the matching playbook in [references/manuscript-map.md](references/manuscript-map.md).
 3. Read [references/style-controls.md](references/style-controls.md) when the task involves tense, voice, hedging, cohesion, causality, articles, terminology, or sentence-level diagnosis.
-4. Build the paragraph plan in sentence functions before writing. Decide what each sentence must do for the reader, not just what information it contains.
-5. Draft or revise from general to specific. Orient the reader early, present evidence clearly, and add interpretation or limitation when the reader would otherwise have to guess.
-6. Calibrate certainty. Match tense, modality, and causal wording to the strength of the evidence.
-7. Run [references/revision-checklist.md](references/revision-checklist.md) before handing text back.
+4. Read [references/workflow-extensions.md](references/workflow-extensions.md) when the task involves manuscript assembly order, tables and figures, review articles, response letters, or lay summaries.
+5. Build the paragraph plan in sentence functions before writing. Decide what each sentence must do for the reader, not just what information it contains.
+6. Draft or revise from general to specific. Orient the reader early, present evidence clearly, and add interpretation or limitation when the reader would otherwise have to guess.
+7. Calibrate certainty. Match tense, modality, and causal wording to the strength of the evidence.
+8. Run [references/revision-checklist.md](references/revision-checklist.md) before handing text back.
 
 ## Section Routing
 
 - Use [references/manuscript-map.md](references/manuscript-map.md) for task triage, section-level move patterns, paragraph roles, and section-specific failure modes.
 - Use [references/style-controls.md](references/style-controls.md) for sentence-level control over clarity, ownership, certainty, causality, and rewrite tactics.
+- Use [references/workflow-extensions.md](references/workflow-extensions.md) for manuscript assembly order, table/figure storytelling, review articles, lay summaries, and response-to-reviewers discipline.
 - Use [references/revision-checklist.md](references/revision-checklist.md) for final review across structure, sentence logic, evidence discipline, and delivery readiness.
 
 ## Output Requirements
@@ -52,6 +56,8 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 - Convert data-heavy text into readable Results prose by adding commentary around the numbers.
 - Convert overclaimed language into evidence-matched language by weakening certainty or causality where needed.
 - Convert flat prose into reader-guided prose by making contribution, limitation, or implication explicit.
+- Convert display-first study materials into a manuscript section by building the story from tables and figures.
+- Convert reviewer criticism into a calm, specific response plus the nearby textual repair it implies.
 
 ## Example Requests
 
@@ -59,3 +65,5 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 - `Use $science-research-writing to revise this Discussion paragraph without strengthening the claim.`
 - `Use $science-research-writing to turn these bullet points into an Introduction paragraph for a biomedical journal.`
 - `Use $science-research-writing to diagnose why this Results paragraph is hard to follow and then rewrite it.`
+- `Use $science-research-writing to draft a point-by-point reply to these reviewer comments without sounding defensive.`
+- `Use $science-research-writing to turn this paper abstract into a lay summary for non-specialist readers.`

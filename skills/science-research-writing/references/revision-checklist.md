@@ -49,15 +49,19 @@ Check local clarity sentence by sentence.
 - Are acronyms introduced before reuse?
 - Have vague synonyms or shorthand labels been removed where they blur meaning?
 - Are key comparative terms such as `increase`, `improvement`, `difference`, or `association` used consistently?
+- If tables or figures are involved, do titles, legends, and prose repeat the same key terms rather than drifting into new labels?
 
 ## Pass 5: Delivery Check
 
 Before returning the text:
 
 - Verify that numbers, comparisons, and citations still match the source.
+- Verify that abstract numbers, body-text numbers, and table or figure values do not contradict one another.
+- Verify that each citation is placed next to the claim it supports and does not point to a source that fails to support that claim.
 - Verify that the revision did not strengthen the claim beyond the evidence.
 - Verify that the prose now answers the reader's likely `So what?` question.
 - Verify that the final wording is still section-appropriate rather than globally polished but rhetorically misplaced.
+- Verify that any reviewer-facing text is specific about what changed and where.
 
 ## Diagnosis Output Pattern
 
