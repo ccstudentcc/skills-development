@@ -2,36 +2,29 @@
 
 ## Current Phase
 
-Stage 5: Publish
+Stage 4: Review and Tighten
 
 ## Completed
 
 - Read the repository instructions from `AGENTS.md`.
-- Confirmed the workspace is not yet a git repository.
-- Read the source material at `references/Science Research Writing.md`.
-- Read the requested skill guidance: `skill-creator`, `skill-improver`, and `skill-reviewer`.
-- Verified that `skill-creator` ships reusable `init_skill.py` and `quick_validate.py`.
-- Rewrote `references/Science Research Writing.md` into English.
-- Initialized `skills/science-research-writing/` with the `skill-creator` scaffold.
-- Replaced the scaffold with a finished English skill plus skill-local references.
-- Added concise repository docs: `README.md`, `ARCHITECTURE.md`, and `CONTRIBUTING.md`.
-- Ran the skill validator successfully.
-- Performed a reviewer-style read-through for design, content, usability, and obvious security issues.
-- Initialized git locally and created the public GitHub repository.
-- Re-checked repository state after the interrupted turn and identified the new Chinese source material at `references/Science Research Writing-zh.md`.
-- Created `skills/science-research-writing-zh/` and packaged the Chinese writing guidance into skill-local references.
-- Ran the validator successfully for `skills/science-research-writing-zh/`.
+- Read the requested skill guidance: `skill-improver`, `skill-reviewer`, and `llm-prompt-optimizer`.
+- Reviewed the current English and Chinese science research writing skills plus their routed reference files.
+- Confirmed that the entrypoint `SKILL.md` files are concise, but the routed `references/` files were too compressed to carry enough practical guidance for model execution.
+- Rewrote the English routed reference files with task triage, section-specific playbooks, sentence-level control tactics, and a stronger final review gate.
+- Rewrote the Chinese routed reference files with parallel structure plus Chinese-specific handling for subject ownership, chart guidance, certainty calibration, and de-colloquialization.
+- Updated both `SKILL.md` files so their routing guidance points to the richer reference content.
+- Synced `SPEC.md` and `IMPLEMENTATION_PLAN.md` with the new requirement that routed references remain materially more concrete than the entrypoint.
 
 ## In Progress
 
-- Reviewing the final repository diff, then committing and pushing both skills to the remote repository.
+- Running a reviewer-style self-check on the updated files and verifying that the routed links still resolve cleanly.
 
 ## Pending
 
-- Commit and push the expanded repository state.
+- Final verification summary for the enriched routed documentation.
+- No commit requested in the current turn.
 
 ## Notes
 
-- The workspace currently contains only `references/` and `skills/`.
-- Repository text files are normalized through `.gitattributes`.
-- GitHub remote target: `https://github.com/ccstudentcc/skills-development`.
+- The current refinement is documentation-only and stays within the existing skill boundaries.
+- The intended design remains progressive disclosure: concise entrypoint, concrete action-oriented reference files.

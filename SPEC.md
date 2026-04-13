@@ -20,6 +20,8 @@ Create two reusable writing skills based on the source material in `references/`
 
 - Keep the skill focused on scientific manuscript drafting and revision rather than generic English writing.
 - Prefer progressive disclosure: keep `SKILL.md` concise and move detailed guidance into `references/`.
+- Skill-local routed references must retain practical depth from the source notes rather than collapsing into short summaries.
+- Routed reference files should help an LLM act: include task triage, section-specific playbooks, rewrite tactics, and final quality gates where relevant.
 - Avoid scripts or assets unless they add clear value.
 - Do not include secrets, credentials, or environment-specific assumptions.
 
@@ -29,6 +31,7 @@ Create two reusable writing skills based on the source material in `references/`
 - `skills/science-research-writing/SKILL.md` has valid frontmatter with only `name` and `description`.
 - `skills/science-research-writing-zh/SKILL.md` has valid frontmatter with only `name` and `description`.
 - The skill folder includes any referenced files and no orphaned resources.
+- The routed reference files for both skills are materially more specific than the entrypoint and provide actionable drafting or revision guidance.
 - `agents/openai.yaml` exists and matches the skill.
 - Validation passes for both skills with the available skill validator.
 - A self-review based on the named reviewer methodology finds no unresolved critical or major issues.

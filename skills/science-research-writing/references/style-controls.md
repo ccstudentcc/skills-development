@@ -1,82 +1,220 @@
 # Style Controls
 
-## Table of Contents
+Use this file when the structure is already known and the real problem is sentence-level control, paragraph logic, certainty, or reader guidance.
 
-- Reader Guidance
-- Paragraph Logic
-- Sentence Connections
-- Tense and Time
-- Voice and Ownership
-- Hedging and Modality
-- Causality
-- Articles and Shared Knowledge
-- Terminology Discipline
-- Risky Constructions
+## Symptom Router
+
+| If the draft feels | Read first | Then check |
+| --- | --- | --- |
+| Flat or hard to follow | `Reader Guidance`, `Paragraph Logic`, `Sentence Connections` | `Risky Constructions` |
+| Too strong or overclaimed | `Hedging and Modality`, `Causality` | `revision-checklist.md` |
+| Ambiguous about who did what | `Voice and Ownership` | `Tense and Time` |
+| Grammatically acceptable but still vague | `Reader Guidance`, `Terminology Discipline` | `Articles and Shared Knowledge` |
+| Choppy, repetitive, or mechanically linked | `Sentence Connections` | `Paragraph Logic` |
 
 ## Reader Guidance
 
-- Tell the reader what a sentence is doing, not only what information it contains.
-- Wrap evidence in commentary so the relevance is explicit.
-- Assume less shared knowledge than the authors usually assume when talking to colleagues.
+### Core Rule
+
+Tell the reader what the sentence is doing, not only what information it contains.
+
+### Apply It By Asking
+
+- Why is this sentence here?
+- What question from the previous sentence does it answer?
+- If removed, what would the reader stop understanding?
+
+### Preferred Repairs
+
+- Add a short orienting clause before the detail.
+- Add commentary around data so the relevance is explicit.
+- Replace author-memory ordering with reader-need ordering.
 
 ## Paragraph Logic
 
-- Give each paragraph one main communicative function.
-- Let the opening sentence orient the reader to the paragraph's role.
-- Move from known context to new information.
-- Split paragraphs when one paragraph tries to perform multiple jobs.
+### Core Rule
+
+Each paragraph should do one main communicative job.
+
+### Paragraph Build Order
+
+1. Open with the paragraph role.
+2. Develop the key evidence or reasoning.
+3. End with the local takeaway, implication, or transition when needed.
+
+### Split the Paragraph When
+
+- one paragraph carries background, method, result, and interpretation at once,
+- the opening sentence does not predict the rest of the paragraph,
+- the paragraph can be divided into two distinct reader questions.
 
 ## Sentence Connections
 
-Use one of these links whenever the gap between sentences could become unclear:
+The gap between adjacent sentences should rarely be left implicit.
+
+### Reliable Connection Methods
+
 - Repeat a key term from the previous sentence.
-- Use a stable noun phrase such as `this method` or `these results`, not a vague `this`.
+- Use an explicit noun phrase such as `this pattern`, `these data`, or `this method`.
 - Use a semicolon only when the two clauses are tightly linked and still readable.
-- Use a signal word such as `however`, `therefore`, or `by contrast` only when the logic truly matches.
+- Use a signal word only when the logic genuinely matches.
+
+### Quick Diagnostics
+
+- If the second sentence begins with `This`, can the referent be named more precisely?
+- If the transition word is removed, does the logic remain visible?
+- If the relation is contrast, cause, addition, or qualification, is that relation explicit enough?
 
 ## Tense and Time
 
+### Decision Rules
+
 - Use simple present for stable facts, accepted knowledge, and figure descriptions.
 - Use simple past for what this study did or found in a bounded experiment.
-- Use present perfect when a past research pattern remains relevant to the current gap.
-- Change tense deliberately; every shift should signal a change in communicative purpose.
+- Use present perfect when earlier research remains relevant to the present gap or problem.
+- Change tense only when the communicative function changes.
+
+### Common Repairs
+
+- Background sentence accidentally written in the past: shift to present if it states stable knowledge.
+- Current study aim written in the past in the Introduction: shift to present if it states what the paper does.
+- Result sentence written in present when it describes what was observed in one experiment: shift to past unless it describes the figure itself.
 
 ## Voice and Ownership
 
-- Use active voice when the actor matters or when passive wording would hide ownership.
-- Use passive voice when the process matters more than the actor, but keep study ownership clear with phrases such as `in this study`.
-- Do not let passive wording blur the boundary between the present study, prior work, and standard procedures.
+### Core Rule
+
+The reader should always know whether a claim belongs to the present study, prior work, a standard method, or a field-level fact.
+
+### Prefer Active Voice When
+
+- the actor matters,
+- responsibility or choice needs to be visible,
+- passive wording would hide study ownership.
+
+### Passive Voice Is Acceptable When
+
+- the process matters more than the actor,
+- the action is conventional,
+- ownership remains clear through phrases such as `in this study`, `here`, or a nearby citation.
+
+### Repair Pattern
+
+If a passive sentence is ambiguous, revise using one of these moves:
+
+- name the actor,
+- add `in this study`,
+- add the citation to the originating method,
+- replace `it was found` with a concrete subject such as `the analysis showed`.
 
 ## Hedging and Modality
 
-- Match certainty to evidence strength.
-- Use `may`, `might`, `could`, or framing phrases such as `the evidence suggests` when the claim is plausible but not settled.
-- Use stronger wording only when the evidence warrants it.
-- Avoid weakening a statement so much that the contribution disappears.
+### Core Rule
+
+Match certainty to evidence strength.
+
+### Certainty Ladder
+
+Use stronger wording only as the evidence allows:
+
+- strong: `shows`, `demonstrates`, `is consistent with`,
+- moderate: `suggests`, `indicates`, `supports`,
+- cautious: `may reflect`, `could indicate`, `appears to be`.
+
+### Repair Pattern
+
+If the sentence overclaims:
+
+1. weaken the verb,
+2. limit the scope,
+3. add a condition or evidence frame,
+4. preserve the contribution instead of flattening the whole sentence.
+
+Example transformation:
+
+`X proves that Y causes Z` -> `These findings suggest that Y may contribute to Z under the tested conditions`
 
 ## Causality
 
-- Distinguish direct cause, contributing factor, association, and temporal sequence.
-- Use `cause` or `result in` only for strong causal claims.
-- Use `contribute to`, `is associated with`, or `is related to` when the evidence is weaker or multicausal.
-- Check direction carefully: `X results in Y` is not the same as `X results from Y`.
+### Core Rule
+
+Separate direct cause, contributing factor, association, and temporal order.
+
+### Safer Verb Choices
+
+- direct cause: `cause`, `produce`, `result in`,
+- contributing factor: `contribute to`, `play a role in`,
+- association: `is associated with`, `is related to`,
+- sequence only: `followed by`, `preceded`, `occurred after`.
+
+### Direction Check
+
+Always test the sentence by swapping subject and object:
+
+- `X results in Y` means `X causes Y`,
+- `X results from Y` means `Y causes X`.
+
+If the direction is uncertain, rewrite the sentence before proceeding.
 
 ## Articles and Shared Knowledge
 
-- Use `a` or `an` when introducing something not yet shared.
-- Use `the` when the reader can identify the referent from prior context or shared field knowledge.
-- Treat mass nouns carefully. `evidence`, `information`, and `equipment` are usually not countable in research prose.
+### Core Rule
+
+Use articles to manage what the reader already knows and what is newly introduced.
+
+### Decision Rules
+
+- Use `a` or `an` when introducing a new, not-yet-shared item.
+- Use `the` when the reader can identify the referent from context or shared knowledge.
+- Treat mass nouns carefully. `evidence`, `information`, `equipment`, and `research` are usually not countable in scientific prose.
+
+### Common Repairs
+
+- If a noun suddenly appears with `the`, check whether it has already been introduced.
+- If a generic statement looks too narrow, test whether zero article or plural reference fits better.
 
 ## Terminology Discipline
 
-- Keep one term for one concept across the whole passage.
-- Do not use synonym swapping to avoid repetition when the concept remains the same.
-- Change terminology only when the scope or meaning changes.
+### Core Rule
+
+One concept should keep one label unless the meaning actually changes.
+
+### Use This Check
+
+- Does the same entity change labels across sentences for stylistic variety alone?
+- Has an acronym been introduced before it is reused?
+- Does a near-synonym create a false distinction?
+
+### Preferred Repair
+
+- pick the most accurate term,
+- define it once if needed,
+- keep it stable across the passage.
 
 ## Risky Constructions
 
-- Check every `only`; its position changes the meaning.
-- Expand `-ing` clauses when the logical relation could be read in more than one way.
-- Replace vague `with` phrases when they could imply time, cause, possession, or manner at the same time.
-- Avoid long strings of prepositional phrases that bury the main clause.
-- Replace bare pronouns with explicit noun phrases when reference is not unique.
+### High-Risk Patterns
+
+- misplaced `only`,
+- ambiguous `-ing` clauses,
+- vague `with` phrases,
+- bare pronouns with multiple possible referents,
+- long chains of prepositional phrases.
+
+### Repair Strategy
+
+- Move `only` next to the word it limits.
+- Expand `-ing` clauses into full clauses when the relation is unclear.
+- Replace `with` with a more precise relation such as `using`, `because of`, `during`, or `containing`.
+- Replace a bare pronoun with an explicit noun phrase.
+- Break long modifier chains into two sentences or a clearer noun-plus-clause structure.
+
+## Micro-Rewrite Workflow
+
+When revising a difficult sentence, use this order:
+
+1. identify the sentence job,
+2. identify the owner of the action or claim,
+3. decide the required certainty level,
+4. check tense and causal direction,
+5. simplify the syntax without changing the claim.

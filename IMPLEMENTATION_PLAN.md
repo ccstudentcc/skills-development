@@ -24,6 +24,7 @@
 - Run the available validator against the skill folder.
 - Run the available validator against both skill folders.
 - Review both skills against the four reviewer dimensions.
+- Enrich routed `references/` files when reviewer-style read-through shows that section playbooks or control rules are too shallow to guide the model well.
 - Fix any critical or major issues, then re-check.
 
 ## Stage 5: Publish
@@ -36,4 +37,5 @@
 
 - File inspection for the English source notes and both skill folders.
 - Validator output from `quick_validate.py` for both skills.
+- Reviewer-style read-through of the routed reference files to confirm they remain concise at the entrypoint and concrete in `references/`.
 - Git evidence for repository initialization, commit, remote, and push.

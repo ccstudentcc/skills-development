@@ -25,8 +25,8 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 ## Workflow
 
 1. Identify the job: draft, revise, or diagnose.
-2. Identify the target section and read the matching guidance in [references/manuscript-map.md](references/manuscript-map.md).
-3. Read [references/style-controls.md](references/style-controls.md) when the task involves tense, voice, hedging, cohesion, causality, articles, or terminology.
+2. Identify the target section and read the matching playbook in [references/manuscript-map.md](references/manuscript-map.md).
+3. Read [references/style-controls.md](references/style-controls.md) when the task involves tense, voice, hedging, cohesion, causality, articles, terminology, or sentence-level diagnosis.
 4. Build the paragraph plan in sentence functions before writing. Decide what each sentence must do for the reader, not just what information it contains.
 5. Draft or revise from general to specific. Orient the reader early, present evidence clearly, and add interpretation or limitation when the reader would otherwise have to guess.
 6. Calibrate certainty. Match tense, modality, and causal wording to the strength of the evidence.
@@ -34,9 +34,9 @@ Use this skill to produce research prose that is easy to follow, structurally ap
 
 ## Section Routing
 
-- Use [references/manuscript-map.md](references/manuscript-map.md) for section-level move patterns, paragraph roles, and section-specific failure modes.
-- Use [references/style-controls.md](references/style-controls.md) for sentence-level control over clarity, ownership, certainty, and precision.
-- Use [references/revision-checklist.md](references/revision-checklist.md) for final review across structure, sentence logic, grammar, and evidence discipline.
+- Use [references/manuscript-map.md](references/manuscript-map.md) for task triage, section-level move patterns, paragraph roles, and section-specific failure modes.
+- Use [references/style-controls.md](references/style-controls.md) for sentence-level control over clarity, ownership, certainty, causality, and rewrite tactics.
+- Use [references/revision-checklist.md](references/revision-checklist.md) for final review across structure, sentence logic, evidence discipline, and delivery readiness.
 
 ## Output Requirements
 
