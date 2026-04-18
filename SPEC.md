@@ -19,6 +19,7 @@ The skill should decide whether guidance belongs in `AGENTS.md` at all, choose t
 - Support lossless `AGENTS.md` compression: shorten bloated files by merging redundant wording without weakening execution constraints.
 - Provide eval fixtures and a safe-first benchmark runner for `with_skill` versus baseline comparisons.
 - Generalize reusable benchmark and task-control lessons into `docs/`.
+- Generalize reusable skill-release closeout lessons into `docs/`.
 - Keep repository docs synchronized only where they improve discoverability or execution.
 
 ## Constraints
@@ -45,6 +46,7 @@ The skill should decide whether guidance belongs in `AGENTS.md` at all, choose t
 - The benchmark runner can prepare, execute, grade, summarize, and inspect comparative runs without relying on hidden chat context.
 - Benchmark artifacts state whether they are executor-health, production-like comparative, diagnostic, or low-discrimination.
 - `docs/skill-evaluation-workflow.md` captures reusable benchmark workflow for future skills.
+- `docs/skill-release-workflow.md` captures reusable skill release-note placement and closeout workflow.
 - `docs/task-control-docs.md` captures reusable task-control document structure.
 - Root and subdirectory `AGENTS.md` files contain only stable, short repeat-prevention rules.
 - `README.md` and `ARCHITECTURE.md` mention the skill and reusable workflow docs where appropriate.

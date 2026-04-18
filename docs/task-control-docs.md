@@ -64,6 +64,7 @@ Avoid:
 - Rewrite sections when the truth changes; do not only append new bullets.
 - Keep historical detail only when it changes future decisions.
 - Move long reusable procedures into `docs/`.
+- When a task produces a reusable release or maintenance workflow, move that workflow into `docs/` and keep only the live contract in task docs.
 - Keep task docs portable: no user-profile paths, machine-local interpreter paths, or temporary workspace internals unless they are the evidence being discussed.
 - Prefer one concise "Current Truth" section over many dated fragments.
 - At session boundary, update `TASK_STATUS.md` with what is true now and what should happen next.

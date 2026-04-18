@@ -7,8 +7,10 @@ Closeout and documentation governance for `agents-md-improver`.
 ## Current Truth
 
 - `skills/agents-md-improver/` exists with a concise entrypoint, routed references, eval fixtures, `agents/openai.yaml`, and a safe-first benchmark runner.
+- The v1 release note for `agents-md-improver` now uses a release-announcement voice and is tracked in `skills/agents-md-improver/releases/v1.md`.
 - `agents-md-improver` is being extended to cover two additional maintenance workflows: deriving durable global rules from repeated memory evidence, and losslessly compressing verbose `AGENTS.md` files.
 - `docs/skill-evaluation-workflow.md` generalizes the skill benchmark workflow for future skills.
+- `docs/skill-release-workflow.md` now defines where skill release notes live, how they are closed out, and what repo-doc sync is required.
 - `docs/task-control-docs.md` defines the expected structure for `SPEC.md`, `IMPLEMENTATION_PLAN.md`, and `TASK_STATUS.md`.
 - Root `AGENTS.md` now has concise guardrails for skill evaluation and task-control docs.
 - `skills/agents-md-improver/AGENTS.md` scopes fixture, runner, copied-skill-context, and grader rules to the `agents-md-improver` subtree.
@@ -23,6 +25,7 @@ Closeout and documentation governance for `agents-md-improver`.
 
 - If the next goal is a final full benchmark claim, run a fresh informative production-like iteration rather than relying only on re-graded historical artifacts.
 - If adding more skills, reuse `docs/skill-evaluation-workflow.md` and adapt only skill-specific runner details.
+- If publishing future skill milestones, follow `docs/skill-release-workflow.md` instead of placing release notes in `tmp/` or runtime `references/`.
 - If task-control docs start growing again, rewrite them to the structure in `docs/task-control-docs.md` instead of appending more history.
 
 ## Caveats
@@ -36,6 +39,7 @@ Closeout and documentation governance for `agents-md-improver`.
 ## Last Verification
 
 - Re-read `skills/agents-md-improver/SKILL.md`, `references/update-workflow.md`, and `references/review-checklist.md` after the memory-derived-rule and lossless-compression extension.
+- Re-read `skills/agents-md-improver/releases/v1.md` after rewriting it into release-announcement tone.
 - Re-optimized the live repo `AGENTS.md` layers: root `AGENTS.md` is now 40 lines and `skills/agents-md-improver/AGENTS.md` is 23 lines.
 - `git diff --check` passed after the skill extension and AGENTS-layer optimization.
 - `quick_validate.py` passed for `skills/agents-md-improver`.

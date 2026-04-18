@@ -9,6 +9,7 @@ Keep rules short, repo-specific, and focused on preventing repeat mistakes.
 - Treat progressive disclosure as the default pattern. If a reference becomes a primary execution surface, add `Quick Navigation` / `快速导航`.
 - When routing changes, update both the entrypoint `SKILL.md` and the routed `references/` file that handles the scenario.
 - When a skill exists in English and Chinese variants, keep structure aligned while preserving Chinese-native wording instead of literal translation.
+- Put human-facing skill release notes in `skills/<skill>/releases/`; do not leave published notes in `tmp/` or mix them into runtime `references/`.
 
 ## Runtime Boundaries
 
@@ -28,6 +29,7 @@ Keep rules short, repo-specific, and focused on preventing repeat mistakes.
 ## Task Docs
 
 - Use `docs/task-control-docs.md` for `SPEC.md`, `IMPLEMENTATION_PLAN.md`, and `TASK_STATUS.md` structure and rewrite stale sections instead of appending timelines.
+- Use `docs/skill-release-workflow.md` when a skill needs a published release note or versioned release checkpoint.
 - Move reusable procedures into `docs/`; keep task docs free of machine-local paths unless they are necessary evidence.
 
 ## Sources And Hygiene

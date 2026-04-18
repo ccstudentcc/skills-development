@@ -70,12 +70,22 @@ Status: implemented.
 
 Status: implemented.
 
+### Stage 9: Publish Release Surface And Generalize Release Workflow
+
+- Rewrite the human-facing `agents-md-improver` release note into release-announcement tone.
+- Keep published release notes in `skills/<skill>/releases/` and remove duplicate drafts from `tmp/`.
+- Add a reusable `docs/skill-release-workflow.md` so future skills follow the same closeout path.
+- Sync `README.md`, `ARCHITECTURE.md`, `AGENTS.md`, and task docs to the release workflow.
+
+Status: implemented.
+
 ## Validation
 
 - `git diff --check`.
 - `quick_validate.py` for `skills/agents-md-improver` when available.
 - Python syntax check for `skills/agents-md-improver/scripts/run_benchmark.py`.
 - File inspection for root `AGENTS.md`, `skills/agents-md-improver/AGENTS.md`, `docs/skill-evaluation-workflow.md`, and `docs/task-control-docs.md`.
+- File inspection for `docs/skill-release-workflow.md` and `skills/agents-md-improver/releases/v1.md`.
 - File inspection for `skills/agents-md-improver/SKILL.md`, `skills/agents-md-improver/references/update-workflow.md`, and `skills/agents-md-improver/references/review-checklist.md`.
 
 ## Risks
