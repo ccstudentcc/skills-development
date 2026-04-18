@@ -1,43 +1,52 @@
-# Science Research Writing Skill Specification
+# AGENTS.md Improver Skill Specification
 
 ## Goal
 
-Create two reusable writing skills based on the source material in `references/`:
+Create and maintain `skills/agents-md-improver/`, a reusable skill that helps Codex improve `AGENTS.md` files at the correct layer:
 
-- `science-research-writing` for English scientific manuscript prose
-- `science-research-writing-zh` for Chinese scientific manuscript prose
+- global / user-level instruction files,
+- repository-root `AGENTS.md`,
+- subdirectory-scoped `AGENTS.md`.
+
+The skill should decide whether guidance belongs in `AGENTS.md` at all, choose the narrowest durable layer, and produce minimal, verifiable updates instead of bloated instruction files.
 
 ## Scope
 
-- Rewrite `references/Science Research Writing.md` into clear, fully English reference material.
-- Preserve the user-added Chinese reference material at `references/Science Research Writing-zh.md`.
-- Vendor the requested upstream reference repository under `references/Writing-in-the-Sciences/` and use only its unit `README.md` files as new source material.
-- Create portable skill folders under `skills/science-research-writing/` and `skills/science-research-writing-zh/`.
-- Keep the English skill fully in English.
-- Keep the Chinese skill aligned with Chinese scientific writing conventions and Chinese user phrasing.
-- Initialize this workspace as a git repository, publish it to a public remote repository, and push the resulting branch.
+- Distill `research/agents-md_best-practices.md` into portable runtime guidance.
+- Keep the skill package progressive-disclosure based: concise `SKILL.md`, deeper routed `references/`, optional deterministic `scripts/`.
+- Cover document-boundary decisions across `AGENTS.md`, `README.md`, `ARCHITECTURE.md`, and task-control docs.
+- Support full-memory or rollout-summary review when the user wants to derive durable global `AGENTS.md` rules from repeated cross-repository patterns.
+- Support lossless `AGENTS.md` compression: shorten bloated files by merging redundant wording without weakening execution constraints.
+- Provide eval fixtures and a safe-first benchmark runner for `with_skill` versus baseline comparisons.
+- Generalize reusable benchmark and task-control lessons into `docs/`.
+- Keep repository docs synchronized only where they improve discoverability or execution.
 
 ## Constraints
 
-- Keep the skill focused on scientific manuscript drafting and revision rather than generic English writing.
-- Prefer progressive disclosure: keep `SKILL.md` concise and move detailed guidance into `references/`.
-- Skill-local routed references must retain practical depth from the source notes rather than collapsing into short summaries.
-- Routed reference files should help an LLM act: include task triage, section-specific playbooks, rewrite tactics, and final quality gates where relevant.
-- Ignore PDFs and other binary course assets as writing sources unless the user later asks for them explicitly.
-- When importing ideas from the new course notes, adapt them into repository-owned guidance instead of mirroring the source phrasing or structure.
-- The Chinese skill must localize the advice to Chinese academic conventions rather than translating English-style advice literally.
-- Avoid scripts or assets unless they add clear value.
-- Do not include secrets, credentials, or environment-specific assumptions.
+- Do not turn `agents-md-improver` into generic documentation governance; keep runtime behavior focused on `AGENTS.md` decisions.
+- Do not mirror research prose or upstream wording; adapt source material into repo-owned guidance.
+- Keep skill content portable: no machine-local paths, user-profile paths, interpreter paths, or environment-specific commands in skill runtime docs.
+- Allow the skill to reject a requested `AGENTS.md` change when evidence is weak, temporary, or belongs in another document.
+- Treat memory as evidence for repeated patterns, not as current repository truth.
+- Keep compression semantics-safe: do not compress away dangerous-command boundaries, scope limits, or validation caveats.
+- Keep benchmark execution safe-first: preparation is default, nested execution is explicit, and unrestricted execution is not the baseline.
+- Distinguish executor-health smokes, production-like comparative benchmarks, diagnostic reruns, and low-discrimination coverage.
+- Treat absolute `with_skill` and baseline pass rates as primary; use delta as secondary context.
+- Keep `SPEC.md`, `IMPLEMENTATION_PLAN.md`, and `TASK_STATUS.md` concise coordination surfaces, following `docs/task-control-docs.md`.
 
 ## Acceptance Criteria
 
-- `references/Science Research Writing.md` contains no Chinese text.
-- `skills/science-research-writing/SKILL.md` has valid frontmatter with only `name` and `description`.
-- `skills/science-research-writing-zh/SKILL.md` has valid frontmatter with only `name` and `description`.
-- The skill folder includes any referenced files and no orphaned resources.
-- The routed reference files for both skills are materially more specific than the entrypoint and provide actionable drafting or revision guidance.
-- The enriched routed guidance reflects useful ideas from the `Writing-in-the-Sciences` unit notes without depending on those notes at runtime.
-- `agents/openai.yaml` exists and matches the skill.
-- Validation passes for both skills with the available skill validator.
-- A self-review based on the named reviewer methodology finds no unresolved critical or major issues.
-- The repository is initialized with git, pushed to a public remote, and the final status is clean or intentionally documented.
+- `skills/agents-md-improver/SKILL.md` has valid frontmatter with only `name` and `description`.
+- Referenced skill-local files exist and are used through clear routing.
+- The skill clearly supports three decisions: whether to update `AGENTS.md`, which layer owns the rule, and how to word the smallest durable rule.
+- The skill explicitly covers two additional maintenance workflows: mining repeated durable patterns from memory for global rules, and compressing `AGENTS.md` text without losing operational meaning.
+- The skill-local references cover layer selection, update workflow, templates, and final review.
+- `skills/agents-md-improver/agents/openai.yaml` exists and matches the skill.
+- The benchmark runner can prepare, execute, grade, summarize, and inspect comparative runs without relying on hidden chat context.
+- Benchmark artifacts state whether they are executor-health, production-like comparative, diagnostic, or low-discrimination.
+- `docs/skill-evaluation-workflow.md` captures reusable benchmark workflow for future skills.
+- `docs/task-control-docs.md` captures reusable task-control document structure.
+- Root and subdirectory `AGENTS.md` files contain only stable, short repeat-prevention rules.
+- `README.md` and `ARCHITECTURE.md` mention the skill and reusable workflow docs where appropriate.
+- `git diff --check` passes after edits.
+- The available skill validator passes for `skills/agents-md-improver/`.

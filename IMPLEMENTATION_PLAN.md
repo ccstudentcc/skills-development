@@ -1,44 +1,85 @@
 # Implementation Plan
 
-## Stage 1: Inspect and Frame
+## Status Summary
 
-- Review repository constraints, skill creation guidance, and reviewer criteria.
-- Capture scope, acceptance criteria, and validation plan in the task tracking files.
+- Stage 1 through Stage 7 are implemented.
+- The current focus is closeout hygiene: keep reusable workflow lessons in `docs/`, keep root `AGENTS.md` concise, and keep task-control docs maintainable.
+- No commit has been made in this handoff.
 
-## Stage 2: Prepare Source Material
+## Stages
 
-- Rewrite `references/Science Research Writing.md` into English.
-- Preserve the original structure where it still helps downstream skill design.
-- Import `references/Writing-in-the-Sciences/` and review only the unit `README.md` files for reusable writing guidance.
+### Stage 1: Inspect And Frame
 
-## Stage 3: Initialize and Author the Skill
+- Read repository instructions and task-control docs.
+- Read `research/agents-md_best-practices.md` and supporting source notes.
+- Define the deliverable as a reusable `agents-md-improver` skill plus minimal repo-doc sync.
 
-- Create `skills/science-research-writing/` with `skill-creator` scaffolding.
-- Replace scaffold content with a concise workflow-oriented `SKILL.md`.
-- Add only the reference files that the skill actually needs.
-- Add `agents/openai.yaml` metadata.
-- Create `skills/science-research-writing-zh/` with matching structure.
-- Package the Chinese scientific writing guidance into Chinese-facing skill content and references.
+Status: complete.
 
-## Stage 4: Review and Tighten
+### Stage 2: Design Skill Shape
 
-- Run the available validator against the skill folder.
-- Run the available validator against both skill folders.
-- Review both skills against the four reviewer dimensions.
-- Enrich routed `references/` files when reviewer-style read-through shows that section playbooks or control rules are too shallow to guide the model well.
-- Add new routed guidance files when the imported course notes expose adjacent but still-practical subflows, such as manuscript assembly order, table/figure storytelling, review articles, lay summaries, or response-to-reviewers discipline.
-- Fix any critical or major issues, then re-check.
+- Define the runtime boundary around `AGENTS.md` improvement.
+- Split guidance into `SKILL.md` plus routed references for layer selection, update workflow, templates, and review.
 
-## Stage 5: Publish
+Status: complete.
 
-- Initialize git locally.
-- Create or connect a public remote repository.
-- Commit the finished workspace and push the default branch.
+### Stage 3: Author Skill
 
-## Verification
+- Create `skills/agents-md-improver/`.
+- Add `SKILL.md`, routed references, `agents/openai.yaml`, eval fixtures, and the benchmark runner.
 
-- File inspection for the English source notes and both skill folders.
-- File inspection for `references/Writing-in-the-Sciences/` with explicit use of unit `README.md` only.
-- Validator output from `quick_validate.py` for both skills.
-- Reviewer-style read-through of the routed reference files to confirm they remain concise at the entrypoint and concrete in `references/`.
-- Git evidence for repository initialization, commit, remote, and push.
+Status: complete.
+
+### Stage 4: Sync Repository Docs
+
+- Update `README.md` and `ARCHITECTURE.md` for skill and workflow discoverability.
+- Keep root task-control docs aligned with the current work.
+
+Status: complete.
+
+### Stage 5: Validate Skill Structure
+
+- Inspect skill files and references.
+- Run `git diff --check`.
+- Run the local `skill-creator` validator when available.
+
+Status: complete for the current files.
+
+### Stage 6: Automate Benchmarking
+
+- Add a safe-first runner with `prepare`, `safe-run`, `grade-benchmark`, and `status` modes.
+- Support eval-selection metadata, bounded parallel execution, deterministic grading, and best-effort review generation.
+- Keep benchmark interpretation honest about explicit skill-context loading and executor limitations.
+
+Status: implemented and validated on targeted and informative runs.
+
+### Stage 7: Generalize Workflow Lessons
+
+- Add `docs/skill-evaluation-workflow.md` for future skill benchmarks.
+- Add `docs/task-control-docs.md` for maintainable `SPEC.md`, `IMPLEMENTATION_PLAN.md`, and `TASK_STATUS.md`.
+- Add concise root and subdirectory `AGENTS.md` guardrails.
+
+Status: implemented.
+
+### Stage 8: Extend Skill For Memory-Derived Rules And Lossless Compression
+
+- Update `skills/agents-md-improver/SKILL.md` so the skill explicitly supports deriving durable global rules from repeated memory evidence.
+- Add routed guidance for lossless `AGENTS.md` compression, including safe vs unsafe compression moves.
+- Extend the review checklist so compressed outputs and memory-derived rule proposals are audited explicitly.
+- Sync `SPEC.md`, `IMPLEMENTATION_PLAN.md`, and `TASK_STATUS.md` to the new skill scope.
+
+Status: implemented.
+
+## Validation
+
+- `git diff --check`.
+- `quick_validate.py` for `skills/agents-md-improver` when available.
+- Python syntax check for `skills/agents-md-improver/scripts/run_benchmark.py`.
+- File inspection for root `AGENTS.md`, `skills/agents-md-improver/AGENTS.md`, `docs/skill-evaluation-workflow.md`, and `docs/task-control-docs.md`.
+- File inspection for `skills/agents-md-improver/SKILL.md`, `skills/agents-md-improver/references/update-workflow.md`, and `skills/agents-md-improver/references/review-checklist.md`.
+
+## Risks
+
+- Existing prepared benchmark run directories contain copied skill context; use fresh iterations or refresh copied context before validating skill text changes.
+- Re-grading old artifacts can fix recognition errors but does not prove new skill text was executed.
+- Production-like baselines may become strong when repo evidence is obvious; improve eval design rather than hiding normal read-only evidence.
