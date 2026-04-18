@@ -1,0 +1,4 @@
+interface:
+  display_name: "AGENTS.md Improver"
+  short_description: "Improve AGENTS.md files at the correct layer"
+  default_prompt: "Use $agents-md-improver to decide whether this instruction belongs in global, repository, or subdirectory AGENTS.md, then make the smallest durable improvement."
