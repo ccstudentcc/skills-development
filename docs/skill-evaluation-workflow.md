@@ -64,6 +64,7 @@ Each iteration should make the run auditable without relying on chat memory:
 - `prompt.md`: exact nested task prompt.
 - `outputs/`: files produced or edited by the run.
 - `final_response.md`: final user-facing answer from the run.
+- `timing.json`: executor timing plus raw `total_tokens` from `codex exec --json` when available.
 - `executor_status.json`: executor state, but not the only readiness signal.
 - `codex_stdout.jsonl` and `codex_stderr.log`: transcripts and warnings when automatic execution is used.
 - `grading.json`: per-expectation `text`, `passed`, and `evidence`.
@@ -71,6 +72,13 @@ Each iteration should make the run auditable without relying on chat memory:
 - `review.html`: best-effort human review surface when a viewer is available.
 
 Inspect `final_response.md` and `outputs/` before trusting `executor_status.json` or aggregate numbers. A run can be marked executed while its final response is still a progress note or while the claimed edit did not land.
+
+Keep output-size metrics distinct from executor-usage metrics:
+
+- `final_response.md` length is a response-size metric, not a token-usage metric.
+- `timing.json.total_tokens` is the executor total-token metric when usage is available.
+- Do not label `final_response.md` chars, `outputs/` chars, or transcript length as "tokens".
+- If a run has missing usage and `timing.json.total_tokens` is `0`, say so explicitly before averaging or comparing token costs.
 
 ## Grading Rules
 
@@ -92,9 +100,18 @@ Read benchmark results in this order:
 2. Absolute baseline pass rate.
 3. Per-eval wins, ties, and losses.
 4. Delta as secondary context.
-5. Transcript and output inspection for surprising scores.
+5. Time and usage costs, with token metric names stated explicitly.
+6. Transcript and output inspection for surprising scores.
 
 Baseline strengthening is not automatically bad. In production-like benchmarks, a strong baseline may mean the repo evidence is obvious. Use harder evals, not artificial blindness, when the goal is realistic skill value.
+
+When reporting efficiency, name the metric precisely instead of saying only "tokens":
+
+- use `executor total tokens` for `timing.json.total_tokens`,
+- use `final response length` for `final_response.md` text length,
+- use `output chars` only for aggregate edited-file size if that metric is relevant.
+
+If a summary includes both response length and executor token cost, report them separately and explain why they are not interchangeable.
 
 ## Iteration Discipline
 
@@ -114,5 +131,6 @@ Before reporting success:
 - Run `git diff --check`.
 - Compile or syntax-check any benchmark runner scripts that changed.
 - Summarize the exact iteration paths and pass rates.
+- If quoting efficiency numbers, state whether they came from `timing.json.total_tokens`, final-response length, or another metric.
 - State which results came from fresh reruns and which came from re-grading existing artifacts.
 - State remaining caveats, especially non-native skill loading, executor policy, or known low-discrimination evals.

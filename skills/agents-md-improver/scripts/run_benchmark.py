@@ -103,6 +103,26 @@ def summarize_expectations(expectations: list[dict[str, object]]) -> dict[str, o
     }
 
 
+def calculate_stats(values: list[float]) -> dict[str, float]:
+    if not values:
+        return {"mean": 0.0, "stddev": 0.0, "min": 0.0, "max": 0.0}
+
+    count = len(values)
+    mean = sum(values) / count
+    if count > 1:
+        variance = sum((value - mean) ** 2 for value in values) / (count - 1)
+        stddev = variance**0.5
+    else:
+        stddev = 0.0
+
+    return {
+        "mean": round(mean, 4),
+        "stddev": round(stddev, 4),
+        "min": round(min(values), 4),
+        "max": round(max(values), 4),
+    }
+
+
 def find_skill_creator_dir(explicit: str | None) -> Path:
     candidates: list[Path] = []
     if explicit:
@@ -1131,6 +1151,8 @@ def grade_run(case: EvalCase, run_dir: Path) -> dict[str, object]:
     expectations = GRADERS[case.eval_id](outputs_dir, final_response, case.expectations)
     summary = summarize_expectations(expectations)
     timing = json.loads((run_dir / "timing.json").read_text(encoding="utf-8"))
+    executor_total_tokens = int(timing.get("total_tokens", 0))
+    final_response_chars = len(final_response)
 
     output_chars = 0
     for path in outputs_dir.rglob("*"):
@@ -1145,10 +1167,14 @@ def grade_run(case: EvalCase, run_dir: Path) -> dict[str, object]:
             "total_tool_calls": 0,
             "total_steps": 0,
             "errors_encountered": 0,
+            "executor_total_tokens": executor_total_tokens,
+            "executor_total_tokens_recorded": executor_total_tokens > 0,
+            "final_response_chars": final_response_chars,
             "output_chars": output_chars,
             "transcript_chars": len(read_text(run_dir / "codex_stdout.jsonl")),
         },
         "timing": {
+            "executor_total_tokens": executor_total_tokens,
             "executor_duration_seconds": timing["executor_duration_seconds"],
             "total_duration_seconds": timing["total_duration_seconds"],
         },
@@ -1165,6 +1191,96 @@ def grade_run(case: EvalCase, run_dir: Path) -> dict[str, object]:
     }
     write_json(run_dir / "grading.json", grading)
     return grading
+
+
+def load_benchmark_run_result(case: EvalCase, configuration: str, run_dir: Path) -> dict[str, object]:
+    grading = json.loads((run_dir / "grading.json").read_text(encoding="utf-8"))
+    timing = json.loads((run_dir / "timing.json").read_text(encoding="utf-8"))
+    execution_metrics = grading.get("execution_metrics", {})
+    notes_summary = grading.get("user_notes_summary", {})
+    executor_total_tokens = int(timing.get("total_tokens", 0))
+    final_response_chars = int(execution_metrics.get("final_response_chars", len(read_text(run_dir / "final_response.md"))))
+
+    notes: list[str] = []
+    notes.extend(notes_summary.get("uncertainties", []))
+    notes.extend(notes_summary.get("needs_review", []))
+    notes.extend(notes_summary.get("workarounds", []))
+
+    return {
+        "eval_id": case.eval_id,
+        "configuration": configuration,
+        "run_number": 1,
+        "result": {
+            "pass_rate": grading["summary"]["pass_rate"],
+            "passed": grading["summary"]["passed"],
+            "failed": grading["summary"]["failed"],
+            "total": grading["summary"]["total"],
+            "time_seconds": timing.get("total_duration_seconds", 0.0),
+            "executor_total_tokens": executor_total_tokens,
+            "final_response_chars": final_response_chars,
+            "tokens": executor_total_tokens,
+            "tool_calls": execution_metrics.get("total_tool_calls", 0),
+            "errors": execution_metrics.get("errors_encountered", 0),
+        },
+        "expectations": grading.get("expectations", []),
+        "notes": notes,
+    }
+
+
+def build_precise_benchmark_stats(iteration_dir: Path, cases: list[EvalCase]) -> tuple[list[dict[str, object]], dict[str, object], dict[str, dict[str, int]]]:
+    runs: list[dict[str, object]] = []
+    config_names = ("with_skill", "without_skill")
+    token_usage_counts: dict[str, dict[str, int]] = {
+        config_name: {"recorded": 0, "missing": 0} for config_name in config_names
+    }
+
+    for case in cases:
+        eval_dir = iteration_dir / f"eval-{case.eval_id}-{case.eval_name}"
+        for configuration in config_names:
+            run_dir = eval_dir / configuration / "run-1"
+            run_result = load_benchmark_run_result(case, configuration, run_dir)
+            runs.append(run_result)
+            if run_result["result"]["executor_total_tokens"] > 0:
+                token_usage_counts[configuration]["recorded"] += 1
+            else:
+                token_usage_counts[configuration]["missing"] += 1
+
+    run_summary: dict[str, object] = {}
+    for configuration in config_names:
+        config_runs = [run for run in runs if run["configuration"] == configuration]
+        pass_rates = [float(run["result"]["pass_rate"]) for run in config_runs]
+        time_seconds = [float(run["result"]["time_seconds"]) for run in config_runs]
+        final_response_chars = [float(run["result"]["final_response_chars"]) for run in config_runs]
+        executor_total_tokens = [
+            float(run["result"]["executor_total_tokens"])
+            for run in config_runs
+            if float(run["result"]["executor_total_tokens"]) > 0
+        ]
+
+        run_summary[configuration] = {
+            "pass_rate": calculate_stats(pass_rates),
+            "time_seconds": calculate_stats(time_seconds),
+            "executor_total_tokens": calculate_stats(executor_total_tokens),
+            "final_response_chars": calculate_stats(final_response_chars),
+            "tokens": calculate_stats(executor_total_tokens),
+            "token_usage": {
+                "recorded_runs": token_usage_counts[configuration]["recorded"],
+                "missing_runs": token_usage_counts[configuration]["missing"],
+            },
+        }
+
+    with_skill = run_summary["with_skill"]
+    without_skill = run_summary["without_skill"]
+
+    run_summary["delta"] = {
+        "pass_rate": f"{with_skill['pass_rate']['mean'] - without_skill['pass_rate']['mean']:+.2f}",
+        "time_seconds": f"{with_skill['time_seconds']['mean'] - without_skill['time_seconds']['mean']:+.1f}",
+        "executor_total_tokens": f"{with_skill['executor_total_tokens']['mean'] - without_skill['executor_total_tokens']['mean']:+.0f}",
+        "final_response_chars": f"{with_skill['final_response_chars']['mean'] - without_skill['final_response_chars']['mean']:+.0f}",
+        "tokens": f"{with_skill['executor_total_tokens']['mean'] - without_skill['executor_total_tokens']['mean']:+.0f}",
+    }
+
+    return runs, run_summary, token_usage_counts
 
 
 def build_eval_metadata(case: EvalCase) -> dict[str, object]:
@@ -1200,12 +1316,16 @@ def write_iteration_metadata(
 
 
 def update_benchmark_metadata(
+    iteration_dir: Path,
     benchmark_path: Path,
     cases: list[EvalCase],
     runs_per_configuration: int,
     eval_selection: str,
 ) -> None:
     benchmark = json.loads(benchmark_path.read_text(encoding="utf-8"))
+    runs, run_summary, token_usage_counts = build_precise_benchmark_stats(iteration_dir, cases)
+    benchmark["runs"] = runs
+    benchmark["run_summary"] = run_summary
     benchmark["metadata"]["skill_name"] = "agents-md-improver"
     benchmark["metadata"]["skill_path"] = str(SKILL_ROOT)
     benchmark["metadata"]["executor_model"] = "codex-exec"
@@ -1217,9 +1337,15 @@ def update_benchmark_metadata(
     benchmark["metadata"]["shell_inspection_policy"] = "read-only local shell inspection allowed"
     benchmark["metadata"]["primary_interpretation"] = "absolute end-to-end pass rates first; with-vs-without delta second"
     benchmark["metadata"]["runs_per_configuration"] = runs_per_configuration
+    benchmark["metadata"]["metric_definitions"] = {
+        "executor_total_tokens": "Per-run executor token usage from timing.json.total_tokens when codex exec usage is available.",
+        "final_response_chars": "Character length of final_response.md.",
+    }
     benchmark["notes"] = [
         "This benchmark was executed automatically with `codex exec` on copied fixtures.",
         "Grading is deterministic and eval-specific; it does not rely on a freeform reviewer pass.",
+        f"Executor total-token usage was recorded for with_skill {token_usage_counts['with_skill']['recorded']}/{token_usage_counts['with_skill']['recorded'] + token_usage_counts['with_skill']['missing']} runs.",
+        f"Executor total-token usage was recorded for without_skill {token_usage_counts['without_skill']['recorded']}/{token_usage_counts['without_skill']['recorded'] + token_usage_counts['without_skill']['missing']} runs.",
     ]
     benchmark_path.write_text(json.dumps(benchmark, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -1243,13 +1369,16 @@ def rewrite_benchmark_markdown(iteration_dir: Path) -> None:
         "|--------|------------|---------------|-------|",
         f"| Pass Rate | {run_summary['with_skill']['pass_rate']['mean']*100:.0f}% ± {run_summary['with_skill']['pass_rate']['stddev']*100:.0f}% | {run_summary['without_skill']['pass_rate']['mean']*100:.0f}% ± {run_summary['without_skill']['pass_rate']['stddev']*100:.0f}% | {run_summary['delta']['pass_rate']} |",
         f"| Time | {run_summary['with_skill']['time_seconds']['mean']:.1f}s ± {run_summary['with_skill']['time_seconds']['stddev']:.1f}s | {run_summary['without_skill']['time_seconds']['mean']:.1f}s ± {run_summary['without_skill']['time_seconds']['stddev']:.1f}s | {run_summary['delta']['time_seconds']}s |",
-        f"| Tokens | {run_summary['with_skill']['tokens']['mean']:.0f} ± {run_summary['with_skill']['tokens']['stddev']:.0f} | {run_summary['without_skill']['tokens']['mean']:.0f} ± {run_summary['without_skill']['tokens']['stddev']:.0f} | {run_summary['delta']['tokens']} |",
+        f"| Executor Total Tokens | {run_summary['with_skill']['executor_total_tokens']['mean']:.0f} ± {run_summary['with_skill']['executor_total_tokens']['stddev']:.0f} | {run_summary['without_skill']['executor_total_tokens']['mean']:.0f} ± {run_summary['without_skill']['executor_total_tokens']['stddev']:.0f} | {run_summary['delta']['executor_total_tokens']} |",
+        f"| Final Response Chars | {run_summary['with_skill']['final_response_chars']['mean']:.0f} ± {run_summary['with_skill']['final_response_chars']['stddev']:.0f} | {run_summary['without_skill']['final_response_chars']['mean']:.0f} ± {run_summary['without_skill']['final_response_chars']['stddev']:.0f} | {run_summary['delta']['final_response_chars']} |",
         "",
         "## Reading Guide",
         "",
         "- Read this as a production-like `with_skill` vs `without_skill` comparison first: both sides can inspect the prepared repository copy with read-only shell access.",
         "- Treat the absolute pass rates for `with_skill` and `without_skill` as the primary result.",
         "- Treat the delta as secondary context rather than the only success metric.",
+        "- Treat `Executor Total Tokens` as executor usage from `timing.json.total_tokens`, not as response length.",
+        "- Treat `Final Response Chars` as the size of `final_response.md`, not as token usage.",
         "- `with_skill` currently uses explicit local skill-file loading inside the run directory, not native nested skill discovery.",
         "",
         "## Notes",
@@ -1301,7 +1430,8 @@ def generate_results_summary(iteration_dir: Path, cases: list[EvalCase]) -> None
         "notes": [
             "This file summarizes the current production-like comparative benchmark artifacts for the iteration.",
             "Interpret absolute with_skill and without_skill pass rates first, then compare the delta.",
-            "Token and duration fields are only meaningful for runs that actually executed through `codex exec --json`.",
+            "Executor total-token fields come from timing.json.total_tokens when codex exec usage is available.",
+            "Final-response length fields come from final_response.md character counts and are not token metrics.",
         ],
     }
     write_json(iteration_dir / "results.json", results_json)
@@ -1579,6 +1709,7 @@ def grade_and_benchmark_iteration(
         encoding="utf-8",
     )
     update_benchmark_metadata(
+        iteration_dir,
         iteration_dir / "benchmark.json",
         cases,
         runs_per_configuration=1,
